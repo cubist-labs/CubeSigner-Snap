@@ -1,0 +1,59 @@
+diff --git a/node_modules/openapi-fetch/dist/index.js b/node_modules/openapi-fetch/dist/index.js
+index 202b991..d36f166 100644
+--- a/node_modules/openapi-fetch/dist/index.js
++++ b/node_modules/openapi-fetch/dist/index.js
+@@ -4,7 +4,7 @@ const DEFAULT_HEADERS = {
+ };
+ const TRAILING_SLASH_RE = /\/*$/;
+ /** serialize query params to string */
+-export function defaultQuerySerializer(q) {
++function defaultQuerySerializer(q) {
+     const search = new URLSearchParams();
+     if (q && typeof q === "object") {
+         for (const [k, v] of Object.entries(q)) {
+@@ -16,11 +16,11 @@ export function defaultQuerySerializer(q) {
+     return search.toString();
+ }
+ /** serialize body object to string */
+-export function defaultBodySerializer(body) {
++function defaultBodySerializer(body) {
+     return JSON.stringify(body);
+ }
+ /** Construct URL string from baseUrl and handle path and query params */
+-export function createFinalURL(url, options) {
++function createFinalURL(url, options) {
+     let finalURL = `${options.baseUrl ? options.baseUrl.replace(TRAILING_SLASH_RE, "") : ""}${url}`;
+     if (options.params.path) {
+         for (const [k, v] of Object.entries(options.params.path))
+@@ -33,7 +33,7 @@ export function createFinalURL(url, options) {
+     }
+     return finalURL;
+ }
+-export default function createClient(clientOptions = {}) {
++function createClient(clientOptions = {}) {
+     const { fetch = globalThis.fetch, querySerializer: globalQuerySerializer, bodySerializer: globalBodySerializer, ...options } = clientOptions;
+     const defaultHeaders = new Headers({
+         ...DEFAULT_HEADERS,
+@@ -62,8 +62,7 @@ export default function createClient(clientOptions = {}) {
+         if (requestBody)
+             requestInit.body = bodySerializer(requestBody);
+         // remove `Content-Type` if serialized body is FormData; browser will correctly set Content-Type & boundary expression
+-        if (requestInit.body instanceof FormData)
+-            baseHeaders.delete("Content-Type");
++        baseHeaders.delete("Content-Type");
+         const response = await fetch(finalURL, requestInit);
+         // handle empty content
+         // note: we return `{}` because we want user truthy checks for `.data` or `.error` to succeed
+@@ -124,3 +123,11 @@ export default function createClient(clientOptions = {}) {
+         },
+     };
+ }
++
++Object.defineProperty(exports, "__esModule", {
++    value: true
++});
++exports.createFinalURL = createFinalURL;
++exports.default = createClient;
++exports.defaultBodySerializer = defaultBodySerializer;
++exports.defaultQuerySerializer = defaultQuerySerializer;
+\ No newline at end of file
