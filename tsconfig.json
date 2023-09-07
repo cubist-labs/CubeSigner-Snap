@@ -1,0 +1,21 @@
+// Note: MetaMask uses Babel to transpile the TypeScript code. We use tsc for
+// type checking as outlined here:
+// <https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html#babel-for-transpiling-tsc-for-types>
+{
+  "compilerOptions": {
+    "declaration": true,
+    // Ensure that .d.ts files are created by tsc, but not .js files
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    // Ensure that Babel can safely transpile files in the TypeScript project
+    "isolatedModules": true,
+    "useUnknownInCatchVariables": false,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2017"
+  },
+  "exclude": ["**/__snapshots__/**", "**/test/**", "**/*.test.ts"]
+}
