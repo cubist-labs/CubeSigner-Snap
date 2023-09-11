@@ -1,0 +1,8 @@
+**/dist/
+**/node_modules/
+**/.eslintrc.js
+**/jest.config.js
+**/snap.config.js
+**/.cache
+packages/site/public
+packages/site/src/lib/bitcoinjs-lib.js
