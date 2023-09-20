@@ -1,0 +1,8 @@
+**/dist
+**/node_modules
+**/jest.config.ts
+**/.cache
+packages/site/public
+**/theme.ts
+gatsby-config.ts
+packages/sdk/src/schema.ts
