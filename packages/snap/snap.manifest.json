@@ -1,0 +1,30 @@
+{
+  "version": "0.2.23",
+  "description": "Cubist hardware-backed key manager",
+  "proposedName": "CubeSigner",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cubist-labs/CubeSigner-Snap"
+  },
+  "source": {
+    "shasum": "CZ0wrpXr4Y2HP8JsbOrQfSlk6Bs6heqHo5ieYMqI1Pc=",
+    "location": {
+      "npm": {
+        "filePath": "dist/bundle.js",
+        "iconPath": "images/icon.svg",
+        "packageName": "@cubist-labs/cubesigner-snap",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
+  },
+  "initialPermissions": {
+    "snap_dialog": {},
+    "endowment:rpc": {
+      "dapps": true,
+      "snaps": true
+    },
+    "endowment:network-access": {},
+    "snap_manageState": {}
+  },
+  "manifestVersion": "0.1"
+}
